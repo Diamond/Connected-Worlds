@@ -4,6 +4,7 @@ using System.Collections;
 public class GameScript : MonoBehaviour {
 	public Transform presentLayer;
 	public Transform pastLayer;
+	public Transform player;
 
 	void Start()
 	{
@@ -28,5 +29,11 @@ public class GameScript : MonoBehaviour {
 				child.collider2D.enabled = child.renderer.enabled;
 			}
 		}
+	}
+
+	void Update() {
+		if (Input.GetMouseButtonDown(1)) {
+			SwapWorld ();
+	    }
 	}
 }
