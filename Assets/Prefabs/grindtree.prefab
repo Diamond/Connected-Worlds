@@ -13,7 +13,7 @@ GameObject:
   - 61: {fileID: 6100000}
   m_Layer: 0
   m_Name: grindtree
-  m_TagString: Untagged
+  m_TagString: Grinder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c5509fbb9e0384c86c541dfc985543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSpeed: 5
+  buildingSpeed: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -5,16 +5,25 @@ public class GameScript : MonoBehaviour {
 	public Transform presentLayer;
 	public Transform pastLayer;
 	public Transform player;
+	private bool _present;
 
 	void Start()
 	{
 		toggleEnabled(pastLayer);
+		_present = true;
 	}
 
 	public void SwapWorld()
 	{
 		toggleEnabled(presentLayer);
 		toggleEnabled(pastLayer);
+		_present = !_present;
+		if (_present) {
+			player.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+		} else {
+			player.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
+		}
+
 	}
 
 	public void toggleEnabled(Transform obj)
