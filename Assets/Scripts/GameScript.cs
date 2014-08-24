@@ -9,6 +9,7 @@ public class GameScript : MonoBehaviour {
 	public Transform player;
 	private bool _present;
 	public Camera mainCamera;
+	public AudioClip portalSound;
 
 	void Start()
 	{
@@ -26,7 +27,7 @@ public class GameScript : MonoBehaviour {
 		} else {
 			player.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
 		}
-
+		audio.PlayOneShot(portalSound);
 	}
 
 	public void toggleEnabled(Transform obj)
