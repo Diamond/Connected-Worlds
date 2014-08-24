@@ -17,5 +17,6 @@ public class BuildingScript : MonoBehaviour {
 	void Wrap()
 	{
 		this.transform.position += new Vector3(90.0f, 0.0f, 0.0f);
+		buildingSpeed += 0.2f;
 	}
 }
