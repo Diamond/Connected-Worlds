@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour {
 	public AudioClip scrollSound;
 	public float distance = 0.0f;
 	public int   scrolls = 0;
+	private bool _hasDoubleJumped = false;
+	public float maxJumpVel = 3.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +25,13 @@ public class PlayerScript : MonoBehaviour {
 
 	bool canJumpAgain()
 	{
-		return (_landed || this.canWallJumpLeft || this.canWallJumpRight);
+		if (!_landed) {
+			if (!_hasDoubleJumped) {
+				_hasDoubleJumped = true;
+				return true;
+			}
+		}
+		return _landed;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
 		if (this.transform.position.x >= 0.0f) {
 			xvel = -0.1f;
 		} else if (this.transform.position.x <= 0.0f) {
-			xvel = 0.05f;
+			xvel = 0.01f;
 		}
 
 		if (this.transform.position.x <= 0.05f && this.transform.position.x >= -0.05f) {
@@ -52,9 +60,16 @@ public class PlayerScript : MonoBehaviour {
 		} else {
 			this.gameObject.rigidbody2D.velocity += new Vector2(xvel, 0.0f);
         }
+
+		if (this.gameObject.rigidbody2D.velocity.y > maxJumpVel) {
+			Vector3 vel = this.gameObject.rigidbody2D.velocity;
+			this.gameObject.rigidbody2D.velocity = new Vector3(vel.x, maxJumpVel, 0.0f);
+		}
+
 		distance += 1.0f * Time.deltaTime;
         this.transform.GetComponent<Animator>().SetBool("Jumping", !_landed);
 		this.transform.GetComponent<Animator>().SetBool("Grinding", _grinding);
+		this.transform.GetComponent<Animator>().SetBool ("DoubleJumping", (!_landed && _hasDoubleJumped));
 		this.particleSystem.enableEmission = _grinding || this.canWallJumpLeft || this.canWallJumpRight;
 	}
 
@@ -75,6 +90,7 @@ public class PlayerScript : MonoBehaviour {
 	public void Landed()
 	{
 		_landed = true;
+		_hasDoubleJumped = false;
 	}
 
 	public void Grinding()
