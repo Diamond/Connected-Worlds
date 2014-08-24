@@ -7,7 +7,7 @@ public class PortalScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if (c.gameObject.tag == "Player") {
+		if (c.gameObject.tag == "Player" && renderer.enabled) {
 			gameController.GetComponent<GameScript>().SwapWorld();
 		}
 	}
