@@ -6,6 +6,7 @@ public class GameScript : MonoBehaviour {
 	public Transform pastLayer;
 	public Transform player;
 	private bool _present;
+	public Camera mainCamera;
 
 	void Start()
 	{
@@ -44,5 +45,9 @@ public class GameScript : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)) {
 			SwapWorld ();
 	    }
+
+		if (player.transform.position.y >= 1.0f) {
+			mainCamera.transform.position = new Vector3(0.0f, player.transform.position.y, -10.0f);
+		}
 	}
 }
