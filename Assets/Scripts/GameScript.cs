@@ -42,7 +42,7 @@ public class GameScript : MonoBehaviour {
 	}
 
 	void Update() {
-		if (player.transform.position.y >= 1.0f) {
+		if (player.transform.position.y >= 0.0f) {
 			mainCamera.transform.position = new Vector3(0.0f, player.transform.position.y, -10.0f);
 		}
 	}

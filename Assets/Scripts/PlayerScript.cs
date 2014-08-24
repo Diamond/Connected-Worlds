@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		float xvel = 0.0f;
 		float yvel = 0.0f;
 		if (this.canWallJumpLeft) {
@@ -35,7 +35,7 @@ public class PlayerScript : MonoBehaviour {
 			xvel += 3.0f;
 			yvel -= 1.0f;
 		}
-
+		
 		if (Input.GetMouseButtonDown(0)) {
 			if (canJumpAgain()) {
 				if (this.canWallJumpLeft) {
@@ -49,13 +49,13 @@ public class PlayerScript : MonoBehaviour {
 				this.gameObject.rigidbody2D.velocity += new Vector2(xvel, jumpHeight);
 				_landed = false;
 			}
-		} else {
-			if (Input.GetMouseButtonUp(0)) {
-				this.gameObject.rigidbody2D.velocity -= new Vector2(0.0f, this.gameObject.rigidbody2D.velocity.y);
-			} else {
-				this.gameObject.rigidbody2D.velocity += new Vector2(xvel, yvel);
-			}
-		}
+		}// else {
+			//if (Input.GetMouseButtonUp(0)) {
+			//	this.gameObject.rigidbody2D.velocity -= new Vector2(0.0f, this.gameObject.rigidbody2D.velocity.y);
+			//} else {
+			// this.gameObject.rigidbody2D.velocity = new Vector2(xvel, yvel);
+			//}
+		//}
 		this.transform.GetComponent<Animator>().SetBool("Jumping", !_landed);
 		this.transform.GetComponent<Animator>().SetBool("Grinding", _grinding);
 		this.particleSystem.enableEmission = _grinding || this.canWallJumpLeft || this.canWallJumpRight;
@@ -93,5 +93,9 @@ public class PlayerScript : MonoBehaviour {
 	public void StopGrinding()
 	{
 		_grinding = false;
+	}
+
+	public void OnBecameInvisible() {
+		Application.LoadLevel (0);
 	}
 }
