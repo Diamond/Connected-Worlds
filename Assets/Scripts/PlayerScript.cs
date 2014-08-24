@@ -11,6 +11,9 @@ public class PlayerScript : MonoBehaviour {
 	public bool canWallJumpRight = false;
 	public AudioClip jumpSound;
 	public AudioClip slideSound;
+	public AudioClip scrollSound;
+	public float distance = 0.0f;
+	public int   scrolls = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +33,12 @@ public class PlayerScript : MonoBehaviour {
 
 		if (this.transform.position.x >= 0.0f) {
 			xvel = -0.1f;
+		} else if (this.transform.position.x <= 0.0f) {
+			xvel = 0.05f;
+		}
+
+		if (this.transform.position.x <= 0.05f && this.transform.position.x >= -0.05f) {
+			xvel = 0.0f;
 		}
 
 		if (Input.GetMouseButtonDown(0)) {
@@ -43,6 +52,7 @@ public class PlayerScript : MonoBehaviour {
 		} else {
 			this.gameObject.rigidbody2D.velocity += new Vector2(xvel, 0.0f);
         }
+		distance += 1.0f * Time.deltaTime;
         this.transform.GetComponent<Animator>().SetBool("Jumping", !_landed);
 		this.transform.GetComponent<Animator>().SetBool("Grinding", _grinding);
 		this.particleSystem.enableEmission = _grinding || this.canWallJumpLeft || this.canWallJumpRight;
@@ -79,5 +89,19 @@ public class PlayerScript : MonoBehaviour {
 
 	public void OnBecameInvisible() {
 		Application.LoadLevel (0);
+		if (PlayerPrefs.HasKey("Scrolls")) {
+			if (PlayerPrefs.GetInt("Scrolls") < scrolls) {
+				PlayerPrefs.SetInt("Scrolls", scrolls);
+			}
+		} else {
+			PlayerPrefs.SetFloat("Scrolls", scrolls);
+		}
+		PlayerPrefs.Save();
+	}
+
+	public void GetScroll()
+	{
+		scrolls++;
+		audio.PlayOneShot(scrollSound);
 	}
 }

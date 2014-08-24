@@ -9,7 +9,7 @@ public class BuildingScript : MonoBehaviour {
 	void Update () {
 		float moveY = 0.0f;
 		this.transform.position -= new Vector3(buildingSpeed * Time.deltaTime, moveY, 0.0f);
-		if (this.transform.position.x <= -10.0f) {
+		if (this.transform.position.x <= -8.0f) {
 			Wrap ();
 		}
 	}
@@ -17,6 +17,6 @@ public class BuildingScript : MonoBehaviour {
 	void Wrap()
 	{
 		this.transform.position += new Vector3(90.0f, 0.0f, 0.0f);
-		buildingSpeed += 0.2f;
+		buildingSpeed += 0.5f;
 	}
 }

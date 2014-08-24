@@ -7,22 +7,22 @@ public class GameScript : MonoBehaviour {
 	public Transform presentLayer;
 	public Transform pastLayer;
 	public Transform player;
-	private bool _present;
+	public bool present;
 	public Camera mainCamera;
 	public AudioClip portalSound;
 
 	void Start()
 	{
 		toggleEnabled(pastLayer);
-		_present = true;
+		present = true;
 	}
 
 	public void SwapWorld()
 	{
 		toggleEnabled(presentLayer);
 		toggleEnabled(pastLayer);
-		_present = !_present;
-		if (_present) {
+		present = !present;
+		if (present) {
 			player.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
 		} else {
 			player.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
