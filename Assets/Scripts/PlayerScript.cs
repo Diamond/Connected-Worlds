@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour {
 	public Transform exclamation;
 	public bool canWallJumpLeft = false;
 	public bool canWallJumpRight = false;
+	public AudioClip jumpSound;
+	public AudioClip slideSound;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +35,7 @@ public class PlayerScript : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 			if (canJumpAgain()) {
 				this.gameObject.rigidbody2D.velocity += new Vector2(xvel, jumpHeight);
+				audio.PlayOneShot(jumpSound);
 				_landed = false;
 			} else {
 				this.gameObject.rigidbody2D.velocity += new Vector2(xvel, 0.0f);
@@ -43,11 +46,6 @@ public class PlayerScript : MonoBehaviour {
         this.transform.GetComponent<Animator>().SetBool("Jumping", !_landed);
 		this.transform.GetComponent<Animator>().SetBool("Grinding", _grinding);
 		this.particleSystem.enableEmission = _grinding || this.canWallJumpLeft || this.canWallJumpRight;
-	}
-
-	void OnCollisionEnter2D(Collision2D c)
-	{
-
 	}
 
 	void OnTriggerEnter2D(Collider2D c)
