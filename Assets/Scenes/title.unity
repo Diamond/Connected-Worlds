@@ -110,7 +110,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1f43db79f111862499afcb9d39034f17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1036780df69e4c047854a1d453681338, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &259233989
 Transform:
@@ -553,7 +553,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5d267b109a8e8c249837ab589369c943, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6efc26b897f4ed438d38fbed94008db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &2005046328
 Transform:
