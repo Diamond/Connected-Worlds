@@ -104,15 +104,15 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	public void OnBecameInvisible() {
-		Application.LoadLevel (0);
 		if (PlayerPrefs.HasKey("Scrolls")) {
 			if (PlayerPrefs.GetInt("Scrolls") < scrolls) {
 				PlayerPrefs.SetInt("Scrolls", scrolls);
 			}
 		} else {
-			PlayerPrefs.SetFloat("Scrolls", scrolls);
+			PlayerPrefs.SetInt("Scrolls", scrolls);
 		}
 		PlayerPrefs.Save();
+		Application.LoadLevel (0);
 	}
 
 	public void GetScroll()

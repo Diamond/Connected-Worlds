@@ -10,7 +10,7 @@ public class TitleScreenScript : MonoBehaviour {
 	void Start()
 	{
 		Input.simulateMouseWithTouches = true;
-		if (PlayerPrefs.HasKey ("Distance")) {
+		if (PlayerPrefs.HasKey ("Scrolls")) {
 			distanceText.text = "Top Score: " + PlayerPrefs.GetInt("Scrolls").ToString();
 		}
 	}
